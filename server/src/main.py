@@ -32,7 +32,7 @@ app.add_middleware(
         allow_headers=["*"],
     )
 
-app.include_router(items_router, prefix='/v1/items')
+app.include_router(items_router, prefix='/v1/papers')
 
 @app.get('/health')
 async def health_check():

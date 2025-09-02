@@ -1,21 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import Home from './pages/Home';
-import About from './pages/About';
-import './App.css';
+import Discover from './pages/Discover';
+import Likes from './pages/Likes';
 
 function App() {
     return (
         <Router>
-            <div className="App">
+            <div className="app w-[100vw] h-[100vh] flex flex-col p-2">
                 <Navigation />
-                <main style={{ padding: '2rem' }}>
+                <main className="flex-grow">
                     <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
+                        <Route path="/" element={<Discover />} />
+                        <Route path="/likes" element={<Likes />} />
                     </Routes>
                 </main>
+
             </div>
         </Router>
     );
