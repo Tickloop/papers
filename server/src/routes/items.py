@@ -7,21 +7,22 @@ router = APIRouter()
 
 def load_json(file: str):
     import json
-    with open('/home/arya/projects/date-papers/server/src/' + file, 'r') as f:
+    with open('/home/arya/projects/papers/data-scraping/data/' + file, 'r') as f:
         return json.load(f)
 
 def save_json(file: str, data):
     import json
-    with open('/home/arya/projects/date-papers/server/src/' + file, 'w') as f:
+    with open('/home/arya/projects/papers/data-scraping/data/' + file, 'w') as f:
         json.dump(data, f)
 
-data = load_json('nips2024.json')
+# data = load_json('nips2024.json')
+data = load_json('acl-entities-cleaned.json')
 actions = load_json('actions.json')
 
 from pydantic import BaseModel
 
 class ItemAction(BaseModel):
-    id: int
+    id: str
     action: str
 
 @router.get('')
@@ -41,7 +42,7 @@ async def get_likes_count(db: DB):
 @router.get('/likes')
 async def get_liked_items(db: DB, offset: int = 0, limit: int = 25):
     liked_ids = [item['id'] for item in actions if item['action'] == 'accepted']
-    liked_papers = [item for item in data if int(item['id']) in liked_ids]
+    liked_papers = [item for item in data if item['id'] in liked_ids]
     return liked_papers[offset: offset + limit]
 
 @router.post('')

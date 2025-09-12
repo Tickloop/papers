@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const localhost = 'http://localhost:8080';
-const localhost = 'http://192.168.1.192:8080';
+const localhost = 'http://localhost:8080';
+// const localhost = 'http://192.168.1.192:8080';
 
 const baseClient = axios.create({
     baseURL: import.meta.env.VITE_API_URL || localhost,

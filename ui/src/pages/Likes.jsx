@@ -17,7 +17,7 @@ const Likes = () => {
                         <div className="text-gray-500 my-1">{paper.author}</div>
                         <div className="line-clamp-4">{paper.abstract}</div>
                         <button className="mt-2 text-xs text-blue-500">
-                            <a href={paper.link || ''}>View Paper</a>
+                            <a href={paper.url || ''}>View Paper</a>
                         </button>
                     </li>
 
