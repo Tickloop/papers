@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:17.6-alpine
+    container_name: lava-pg
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: lava
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+    external: true
+    name: lava-pg
