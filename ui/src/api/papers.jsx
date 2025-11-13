@@ -1,7 +1,7 @@
 import baseClient from "./baseclient";
 
 const getPapers = async (limit = 25) => {
-    return baseClient.get(`/v1/papers?limit=${limit}`)
+    return baseClient.get(`/v1/papers`)
         .then(res => res.data);
 };
 

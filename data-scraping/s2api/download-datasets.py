@@ -11,7 +11,8 @@ api_key = os.getenv("S2_API_KEY")
 headers = {"x-api-key": api_key}
 base_dir = '/mnt/ssd/data/s2'
 colours = ['red', 'green', 'blue']
-datasets = ['papers', 'abstracts', 'tldrs']
+# datasets = ['papers', 'abstracts', 'tldrs']
+datasets = ['publication-venues']
 
 def get_latest_release() -> str | None:
     url = 'https://api.semanticscholar.org/datasets/v1/release'
