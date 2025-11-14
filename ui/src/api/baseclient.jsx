@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// const localhost = 'http://localhost:8080';
+const localhost = 'http://localhost:8080';
 // const localhost = 'http://192.168.1.192:8080';
-const localhost = 'http://100.92.64.105:8080';
+// const localhost = 'http://100.92.64.105:8080';
 
 const baseClient = axios.create({
     baseURL: `${import.meta.env.VITE_API_URL || localhost}/api`,
@@ -10,6 +10,7 @@ const baseClient = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true,
 });
 
 // Handle Errors globally
@@ -18,12 +19,6 @@ baseClient.interceptors.response.use(
         return response;
     },
     (error) => {
-        // 401 - Unauthorized
-        if (error.response?.status === 401) {
-            localStorage.removeItem('authToken');
-            window.location.href = '/login';
-        }
-
         // 422 - Unprocessable entity
         if (error.response?.status === 422) {
             console.error('Validation error:', error);
@@ -37,33 +32,5 @@ baseClient.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-
-// Request interceptor
-// baseClient.interceptors.request.use(
-//     (config) => {
-//         const token = localStorage.getItem('authToken');
-//         if (token) {
-//             config.headers.Authorization = `Bearer ${token}`;
-//         }
-//         return config;
-//     },
-//     (error) => {
-//         return Promise.reject(error);
-//     }
-// );
-
-// // Response interceptor
-// baseClient.interceptors.response.use(
-//     (response) => {
-//         return response;
-//     },
-//     (error) => {
-//         if (error.response?.status === 401) {
-//             localStorage.removeItem('authToken');
-//             window.location.href = '/login';
-//         }
-//         return Promise.reject(error);
-//     }
-// );
 
 export default baseClient;

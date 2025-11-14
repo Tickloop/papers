@@ -74,8 +74,8 @@ class LikeRequest(BaseModel):
 async def action(
     like_request: LikeRequest, 
     db: DB,
-    # auth_user: AuthUser
+    auth_user: AuthUser
     ) -> None:
     if like_request.action == 'accept':
-        like_paper(like_request.id, 1, db)
+        like_paper(like_request.id, auth_user['user_id'], db)
     

@@ -25,8 +25,8 @@ class UserPublic(BaseModel):
 
 def get_user(username: str, db: DB) -> User | None:
     stmt = select(User).where(User.username == username)
-    stmt = stmt.where(User.is_inactive == False)
-    stmt = stmt.where(User.is_deleted == False)
+    stmt = stmt.where(User.is_inactive == False) # noqa
+    stmt = stmt.where(User.is_deleted == False) # noqa
     user = db.exec(stmt).first()
     return user
 
@@ -52,8 +52,8 @@ async def login(user: UserLogin, db: DB, response: Response):
             detail="Invalid username or password",
         )
     token = create_token({"user_id": db_user.id})
-    response.set_cookie(key="token", value=token, httponly=True, samesite="lax", max_age=10 * 365 * 24 * 60 * 60)
-    return {"message": "Login successful"}
+    response.set_cookie(key="token", value=token, httponly=True, secure=False, samesite="lax", max_age=10 * 365 * 24 * 60 * 60)
+    return {"message": "Login successful", "token": token}
 
 @router.post('/signup', status_code=status.HTTP_201_CREATED)
 async def signup(user: UserSignup, db: DB):
