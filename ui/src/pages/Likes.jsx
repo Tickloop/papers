@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLikedPapers } from '@/api/papers';
+import { getLikedPapers, deleteLikedPaper } from '@/api/papers';
 import { Button } from '@/ui';
 import { IoOpenOutline, IoTrashBin, IoArchiveOutline } from "react-icons/io5";
 import clsx from 'clsx';
@@ -66,7 +66,7 @@ const Likes = () => {
 
     const handleDeletePaper = (paperId) => {
         removePaperFromLikes(paperId);
-        // Implement delete functionality here
+        deleteLikedPaper(paperId);
         console.log(`Delete paper with ID: ${paperId}`);
     }
 

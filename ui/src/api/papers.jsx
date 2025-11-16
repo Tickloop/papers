@@ -26,4 +26,9 @@ const getLikedPapers = async () => {
         .then(res => res.data);
 };
 
-export { getPapers, sendPaperAction, getLikesCount, getTotalCount, getLikedPapers };
+const deleteLikedPaper = async (paperId) => {
+    return baseClient.delete(`/v1/papers/likes/${paperId}`)
+        .then(res => res.data);
+}
+
+export { getPapers, sendPaperAction, getLikesCount, getTotalCount, getLikedPapers, deleteLikedPaper};
