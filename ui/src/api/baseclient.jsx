@@ -19,6 +19,13 @@ baseClient.interceptors.response.use(
         return response;
     },
     (error) => {
+        // 401 - Unauthorized
+        if (error.response?.status === 401) {
+            console.error('Unauthorized access - perhaps redirect to login?', error);
+            localStorage.clear();
+            window.location.href = '/auth';
+        }
+
         // 422 - Unprocessable entity
         if (error.response?.status === 422) {
             console.error('Validation error:', error);
