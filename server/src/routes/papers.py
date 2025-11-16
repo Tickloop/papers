@@ -54,7 +54,7 @@ def like_paper(paper_id: str, user_id: str, db: DB):
 @router.get('')
 async def get_items(
     db: DB,
-    # auth_user: AuthUser,
+    auth_user: AuthUser,
     request: Request,
     offset: int = 0,
     venue_abbr: str | None = None,
