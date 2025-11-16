@@ -27,7 +27,7 @@ const LikedPaper = ({ paper, key, onArchive, onDelete }) =>  {
                 <Button  
                     variant="icon"
                     >
-                    <a href={paper.url || ''}>
+                    <a href={paper.url || ''} target='_blank' rel="noopener noreferrer">
                         <IoOpenOutline />
                     </a>
                 </Button>

@@ -36,11 +36,14 @@ const Card = ({ children, id, onAccept, onReject, postUpdate }) => {
             reset();
             return;
         }
+
+        // Optimistic UI update
+        postUpdate(id);
         
         if (swipe && info.offset.x > swipeOffsetThreshold) {
             onAccept(id)
             .then(() => postUpdate(id))
-            .catch(err => { console.log(err); reset(); });
+            .catch(err => reset());
         }
 
         if (swipe && info.offset.x < -swipeOffsetThreshold) {
