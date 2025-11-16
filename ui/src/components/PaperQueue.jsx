@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { motion, useAnimation } from "framer-motion";
 import {getPapers, sendPaperAction} from '@/api/papers';
 
@@ -30,7 +31,6 @@ const Card = ({ children, id, onAccept, onReject, postUpdate }) => {
 
     const handleDragEnd = (event, info) => {
         const swipe = isValidSwipe(info.offset.x, info.velocity.x);
-        console.log(info.offset.x, info.velocity.x, swipe);
 
         if (!swipe) {
             reset();
@@ -52,7 +52,11 @@ const Card = ({ children, id, onAccept, onReject, postUpdate }) => {
 
     return (
         <motion.div
-            className="col-start-1 col-end-2 row-start-1 row-end-2 rounded bg-[#333] p-4"
+            className={clsx(
+                "col-start-1 col-end-2 row-start-1 row-end-2",
+                "bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700",
+                "rounded-xl p-4 shadow-sm"
+            )}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.8}
@@ -90,7 +94,6 @@ export const PaperQueue = () => {
     };
 
     const popPaper = (id) => {
-        console.log(papers);
         setPapers(prev => prev.filter(p => p.id !== id));
     }
 

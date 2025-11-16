@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../contexts/AuthContext"
-import { Input } from "@/ui";
+import { Input, Button } from "@/ui";
 
 const Login = () => {
     const { login, target } = useContext(AuthContext);
@@ -49,8 +49,7 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit"
-                >Login</button>
+                <Button type="submit" size="lg">Login</Button>
             </form>
         </div>
     )
@@ -93,7 +92,7 @@ const Signup = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit">Signup</button>
+                <Button type="submit" size="lg">Signup</Button>
             </form>
         </div>
     )

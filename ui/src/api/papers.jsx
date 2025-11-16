@@ -21,8 +21,8 @@ const getTotalCount = async () => {
         .then(res => res.json())
 };
 
-const getLikedPapers = async (offset = 0, limit = 10) => {
-    return baseClient.get(`/v1/papers/likes?offset=${offset}&limit=${limit}`)
+const getLikedPapers = async () => {
+    return baseClient.get(`/v1/papers/likes`)
         .then(res => res.data);
 };
 
